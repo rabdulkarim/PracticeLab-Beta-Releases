@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Practice Lab — Offline CSCA &amp; Digital SAT Math Simulator</title>
+  <style>
+    :root {
+      --bg: #f8fafc;
+      --surface: #ffffff;
+      --border: #e2e8f0;
+      --text: #0f172a;
+      --muted: #475569;
+      --accent: #2563eb;
+      --accent-hover: #1d4ed8;
+      --badge-bg: #eff6ff;
+      --badge-text: #1d4ed8;
+      --warn-bg: #fffbeb;
+      --warn-border: #fde68a;
+      --warn-text: #92400e;
+    }
+    [data-theme="dark"] {
+      --bg: #0b1120;
+      --surface: #111827;
+      --border: #1e293b;
+      --text: #f1f5f9;
+      --muted: #94a3b8;
+      --accent: #3b82f6;
+      --accent-hover: #2563eb;
+      --badge-bg: #1e293b;
+      --badge-text: #93c5fd;
+      --warn-bg: #1c1917;
+      --warn-border: #78350f;
+      --warn-text: #fcd34d;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    .container { max-width: 860px; margin: 0 auto; padding: 28px 20px 64px; }
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 48px;
+    }
+    .brand { font-weight: 700; font-size: 1.1rem; letter-spacing: -0.01em; }
+    .brand span {
+      background: var(--badge-bg);
+      color: var(--badge-text);
+      font-size: 0.75rem;
+      padding: 2px 8px;
+      border-radius: 999px;
+      margin-left: 8px;
+      font-weight: 600;
+    }
+    .theme-btn {
+      background: var(--surface);
+      color: var(--text);
+      border: 1px solid var(--border);
+      padding: 6px 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.85rem;
+    }
+    .hero { text-align: center; margin-bottom: 44px; }
+    h1 {
+      font-size: clamp(1.9rem, 4vw, 2.7rem);
+      line-height: 1.18;
+      letter-spacing: -0.025em;
+      margin-bottom: 16px;
+    }
+    .subtitle {
+      color: var(--muted);
+      font-size: 1.05rem;
+      max-width: 640px;
+      margin: 0 auto 28px;
+    }
+    .cta-row { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .btn {
+      display: inline-block;
+      padding: 12px 22px;
+      border-radius: 10px;
+      font-weight: 600;
+      text-decoration: none;
+      font-size: 0.95rem;
+    }
+    .btn-primary { background: var(--accent); color: #fff; }
+    .btn-primary:hover { background: var(--accent-hover); }
+    .btn-secondary {
+      background: var(--surface);
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+    .meta { margin-top: 12px; font-size: 0.85rem; color: var(--muted); }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+      margin: 36px 0;
+    }
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+    }
+    .card h3 { font-size: 1rem; margin-bottom: 8px; }
+    .card p { font-size: 0.92rem; color: var(--muted); }
+    .box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 22px;
+      margin-top: 24px;
+    }
+    .box h2 { font-size: 1.1rem; margin-bottom: 10px; }
+    .warn {
+      background: var(--warn-bg);
+      border: 1px solid var(--warn-border);
+      color: var(--warn-text);
+      border-radius: 10px;
+      padding: 14px 16px;
+      font-size: 0.9rem;
+      margin-bottom: 14px;
+    }
+    code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 0.82rem;
+      word-break: break-all;
+      background: var(--bg);
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+    a { color: var(--accent); }
+    footer {
+      margin-top: 48px;
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <nav>
+      <div class="brand">Practice Lab <span>v0.1.0-beta.1</span></div>
+      <button class="theme-btn" id="themeToggle" type="button">Dark Mode</button>
+    </nav>
+
+    <section class="hero">
+      <h1>Offline Windows Exam Simulator for CSCA &amp; Digital SAT Math</h1>
+      <p class="subtitle">
+        Built by a student preparing for CSCA &amp; SAT. 1,039 SymPy-verified STEM questions,
+        170 crisp vector SVG diagrams, and 1-click <strong>Practice Similar</strong> drills—100% offline,
+        zero login, zero paywall during beta.
+      </p>
+      <div class="cta-row">
+        <a class="btn btn-primary"
+           href="https://github.com/rabdulkarim/PracticeLab-Beta-Releases/releases/latest/download/Practice.Lab_0.1.0_x64-setup.exe">
+          Download for Windows (.exe — 3.69 MB)
+        </a>
+        <a class="btn btn-secondary" href="https://forms.gle/ZtpTAArn59Rw38AR8" target="_blank" rel="noopener">
+          Join Beta / Send Bug Report
+        </a>
+      </div>
+      <div class="meta">Windows 10 / 11 (64-bit) &middot; Works completely offline &middot; Local SQLite crash recovery</div>
+    </section>
+
+    <img src="preview1.png" alt="Practice Lab Exam Shell Preview" style="width:100%; border-radius:12px; border:1px solid var(--border); margin: 8px 0 28px; box-shadow: 0 8px 24px rgba(0,0,0,0.08);" />
+
+    <section class="grid">
+      <div class="card">
+        <h3>1-Click "Practice Similar"</h3>
+        <p>Miss a hard circuit or SAT 750+ Boss problem? Generate 5 fresh, mathematically verified variations of that exact archetype instantly.</p>
+      </div>
+      <div class="card">
+        <h3>SymPy-Proven Accuracy</h3>
+        <p>350 CSCA Math, 325 CSCA Physics (160 vector SVGs), and 364 SAT Math questions. Exact symbolic keys and strict SPR grading (<code>.5</code> = <code>0.5</code> = <code>1/2</code>).</p>
+      </div>
+      <div class="card">
+        <h3>Real Exam Conditions</h3>
+        <p>Distraction-free exam shell with authentic Q1&rarr;Q48 (CSCA) and adaptive Q1&rarr;Q22 (SAT) difficulty ramps, plus strict no-calculator CSCA mock mode.</p>
+      </div>
+    </section>
+
+    <section class="box">
+      <h2>Security, SmartScreen &amp; File Verification</h2>
+      <div class="warn">
+        <strong>Windows SmartScreen Notice:</strong> Because this is a free student beta without a code-signing certificate,
+        Windows will show <em>"Windows protected your PC"</em>. Click <strong>More info &rarr; Run anyway</strong> to install.
+      </div>
+      <p style="font-size: 0.92rem; color: var(--muted); margin-bottom: 10px;">
+        <strong>VirusTotal Scan:</strong>
+        <a href="https://www.virustotal.com/gui/file/503cae6556e24c0ae791773558e467d985c502f0deabbd697d8bf4d67b347302" target="_blank" rel="noopener">
+          View full report (68/70 clean)
+        </a>
+        — 2 generic heuristic flags (Arctic Wolf, SecureAge) are standard false positives for unsigned NSIS installers.
+      </p>
+      <p style="font-size: 0.92rem; color: var(--muted);">
+        <strong>SHA-256:</strong>
+        <code>503cae6556e24c0ae791773558e467d985c502f0deabbd697d8bf4d67b347302</code>
+      </p>
+    </section>
+
+    <footer>
+      Practice Lab Private Beta &middot;
+      <a href="https://github.com/rabdulkarim/PracticeLab-Beta-Releases/releases" target="_blank" rel="noopener">GitHub Releases</a>
+    </footer>
+  </div>
+
+  <script>
+    const btn = document.getElementById("themeToggle");
+    const root = document.documentElement;
+    btn.addEventListener("click", () => {
+      const dark = root.getAttribute("data-theme") === "dark";
+      root.setAttribute("data-theme", dark ? "light" : "dark");
+      btn.textContent = dark ? "Dark Mode" : "Light Mode";
+    });
+  </script>
+</body>
+</html>
